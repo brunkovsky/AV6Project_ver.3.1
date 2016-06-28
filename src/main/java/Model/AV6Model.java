@@ -3,7 +3,6 @@ package Model;
 import java.util.Date;
 
 public class AV6Model {
-    private int id;
     private Date date;
     private String windDirectionName;
     private Integer windSpeed;
@@ -23,8 +22,7 @@ public class AV6Model {
     private Double qnhMm;
     private Double qfe;
 
-    public AV6Model(int id, Date date, String windDirectionName, Integer windSpeed, Integer windRush, Integer visibility, Integer octantsNumerator, Integer octantsDenominator, String cloudForm, Integer cloudiness, Double temperature, Double dewPointTemperature, Integer relativityHumidity, Double absoluteHumidity, Double atmospherePressure, Double barometricTrend, Double qnhGPa, Double qnhMm, Double qfe) {
-        this.id = id;
+    public AV6Model(Date date, String windDirectionName, Integer windSpeed, Integer windRush, Integer visibility, Integer octantsNumerator, Integer octantsDenominator, String cloudForm, Integer cloudiness, Double temperature, Double dewPointTemperature, Integer relativityHumidity, Double absoluteHumidity, Double atmospherePressure, Double barometricTrend, Double qnhGPa, Double qnhMm, Double qfe) {
         this.date = date;
         this.windDirectionName = windDirectionName;
         this.windSpeed = windSpeed;
@@ -43,10 +41,6 @@ public class AV6Model {
         this.qnhGPa = qnhGPa;
         this.qnhMm = qnhMm;
         this.qfe = qfe;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public Date getDate() {
@@ -124,7 +118,6 @@ public class AV6Model {
     @Override
     public String toString() {
         return "AV6Model{" +
-                "id=" + id +
                 ", date=" + date +
                 ", windDirectionName='" + windDirectionName + '\'' +
                 ", windSpeed=" + windSpeed +

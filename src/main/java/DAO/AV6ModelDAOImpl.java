@@ -31,7 +31,6 @@ public class AV6ModelDAOImpl implements AV6ModelDAO {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM table_av6;");
             while (resultSet.next()) {
-                int id = resultSet.getInt("id");
                 Date date = resultSet.getTimestamp("date");
                 String windDirectionName = resultSet.getString("wind_direction_name");
                 Integer windSpeed = resultSet.getInt("wind_speed");
@@ -65,7 +64,7 @@ public class AV6ModelDAOImpl implements AV6ModelDAO {
                 if (resultSet.wasNull()) qnhMm = null;
                 Double qfe = resultSet.getDouble("qfe");
                 if (resultSet.wasNull()) qfe = null;
-                result.add(new AV6Model(id, date, windDirectionName, windSpeed, windRush, visibility, octantsNumerator, octantsDenominator, cloudForm, cloudiness, temperature, dewPointTemperature, relativityHumidity, absoluteHumidity, atmospherePressure, barometricTrend, qnhGPa, qnhMm, qfe));
+                result.add(new AV6Model(date, windDirectionName, windSpeed, windRush, visibility, octantsNumerator, octantsDenominator, cloudForm, cloudiness, temperature, dewPointTemperature, relativityHumidity, absoluteHumidity, atmospherePressure, barometricTrend, qnhGPa, qnhMm, qfe));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -75,29 +74,43 @@ public class AV6ModelDAOImpl implements AV6ModelDAO {
     }
 
     @Override
-    public void updateModelById(AV6Model av6Model) {
+    public void updateModel(AV6Model av6Model) {
         Connection connection = ConnectionToDB.getConnection();
         try {
-            PreparedStatement pStatement = connection.prepareStatement("UPDATE table_av6 SET date=?, wind_direction_name=?, wind_speed=?, wind_rush=?, visibility=?, octants_numerator=?, octants_denominator=?, cloud_form=?, cloudiness=?, temperature=?, dew_point_temperature=?, relativity_humidity=?, absolute_humidity=?, atmosphere_pressure=?, barometric_trend=?, qnh_gpa=?, qnh_mm=?, qfe=? WHERE id=?;");
-            pStatement.setDate(1, new java.sql.Date(av6Model.getDate().getTime()));
-            pStatement.setString(2, av6Model.getWindDirectionName());
-            pStatement.setInt(3, av6Model.getWindSpeed());
-            pStatement.setInt(4, av6Model.getWindRush());
-            pStatement.setInt(5, av6Model.getVisibility());
-            pStatement.setInt(6, av6Model.getOctantsNumerator());
-            pStatement.setInt(7, av6Model.getOctantsDenominator());
-            pStatement.setString(8, av6Model.getCloudForm());
-            pStatement.setInt(9, av6Model.getCloudiness());
-            pStatement.setDouble(10, av6Model.getTemperature());
-            pStatement.setDouble(11, av6Model.getDewPointTemperature());
-            pStatement.setInt(12, av6Model.getRelativityHumidity());
-            pStatement.setDouble(13, av6Model.getAbsoluteHumidity());
-            pStatement.setDouble(14, av6Model.getAtmospherePressure());
-            pStatement.setDouble(15, av6Model.getBarometricTrend());
-            pStatement.setDouble(16, av6Model.getQnhGPa());
-            pStatement.setDouble(17, av6Model.getQnhMm());
-            pStatement.setDouble(18, av6Model.getQfe());
-            pStatement.setDouble(19, av6Model.getId());
+            PreparedStatement pStatement = connection.prepareStatement("UPDATE table_av6 SET wind_direction_name=?, wind_speed=?, wind_rush=?, visibility=?, octants_numerator=?, octants_denominator=?, cloud_form=?, cloudiness=?, temperature=?, dew_point_temperature=?, relativity_humidity=?, absolute_humidity=?, atmosphere_pressure=?, barometric_trend=?, qnh_gpa=?, qnh_mm=?, qfe=? WHERE date=?;");
+            pStatement.setString(1, av6Model.getWindDirectionName());
+            if (av6Model.getWindSpeed() != null) pStatement.setInt(2, av6Model.getWindSpeed());
+            else pStatement.setNull(2, Types.INTEGER);
+            if (av6Model.getWindRush() != null) pStatement.setInt(3, av6Model.getWindRush());
+            else pStatement.setNull(3, Types.INTEGER);
+            if(av6Model.getVisibility() != null) pStatement.setInt(4, av6Model.getVisibility());
+            else pStatement.setNull(4, Types.INTEGER);
+            if (av6Model.getOctantsNumerator() != null) pStatement.setInt(5, av6Model.getOctantsNumerator());
+            else pStatement.setNull(5, Types.INTEGER);
+            if (av6Model.getOctantsDenominator() != null) pStatement.setInt(6, av6Model.getOctantsDenominator());
+            else pStatement.setNull(6, Types.INTEGER);
+            pStatement.setString(7, av6Model.getCloudForm());
+            if (av6Model.getCloudiness() != null) pStatement.setInt(8, av6Model.getCloudiness());
+            else pStatement.setNull(8, Types.DOUBLE);
+            if (av6Model.getTemperature() != null) pStatement.setDouble(9, av6Model.getTemperature());
+            else pStatement.setNull(9, Types.DOUBLE);
+            if (av6Model.getDewPointTemperature() != null) pStatement.setDouble(10, av6Model.getDewPointTemperature());
+            else pStatement.setNull(10, Types.DOUBLE);
+            if (av6Model.getRelativityHumidity() != null) pStatement.setInt(11, av6Model.getRelativityHumidity());
+            else pStatement.setNull(11, Types.INTEGER);
+            if (av6Model.getAbsoluteHumidity() != null) pStatement.setDouble(12, av6Model.getAbsoluteHumidity());
+            else pStatement.setNull(12, Types.DOUBLE);
+            if (av6Model.getAtmospherePressure() != null) pStatement.setDouble(13, av6Model.getAtmospherePressure());
+            else pStatement.setNull(13, Types.DOUBLE);
+            if (av6Model.getBarometricTrend() != null) pStatement.setDouble(14, av6Model.getBarometricTrend());
+            else pStatement.setNull(14, Types.DOUBLE);
+            if (av6Model.getQnhGPa() != null) pStatement.setDouble(15, av6Model.getQnhGPa());
+            else pStatement.setNull(15, Types.DOUBLE);
+            if (av6Model.getQnhMm() != null) pStatement.setDouble(16, av6Model.getQnhMm());
+            else pStatement.setNull(16, Types.DOUBLE);
+            if (av6Model.getQfe() != null) pStatement.setDouble(17, av6Model.getQfe());
+            else pStatement.setNull(17, Types.DOUBLE);
+            pStatement.setDate(18, new java.sql.Date(av6Model.getDate().getTime()));
             pStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -106,11 +119,11 @@ public class AV6ModelDAOImpl implements AV6ModelDAO {
     }
 
     @Override
-    public void deleteModelById(int id) {
+    public void deleteModelByDate(Date date) {
         Connection connection = ConnectionToDB.getConnection();
         try {
-            PreparedStatement pStatement = connection.prepareStatement("DELETE FROM table_av6 WHERE id = ?;");
-            pStatement.setInt(1, id);
+            PreparedStatement pStatement = connection.prepareStatement("DELETE FROM table_av6 WHERE date = ?;");
+            pStatement.setDate(1, new java.sql.Date(date.getTime()));
             pStatement.execute();
         } catch (SQLException e) {
             e.printStackTrace();

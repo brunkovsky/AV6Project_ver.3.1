@@ -9,67 +9,112 @@
         td, th {border: 1px solid gray;}
         th {background-color: gray; color: black;}
     </style>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script>
+        $(function() {
+            $( "#datepicker" ).datepicker({
+                showOtherMonths: true,
+                selectOtherMonths: true,
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>
 </head>
 <body>
 <table>
     <tr>
-        <th>id</th>
         <th>date</th>
         <th>wind direction</th>
         <th>wind speed</th>
         <th>wind rush</th>
         <th>visibility</th>
-        <th>octants</th>
+        <th>octants N</th>
+        <th>octants D</th>
         <th>cloud form</th>
         <th>cloudiness</th>
         <th>temperature</th>
         <th>d.p. temperature</th>
-        <th>rel humidity</th>
-        <th>abs humidity</th>
-        <th>atm pressure</th>
-        <th>barometric trend</th>
+        <th>rel. humidity</th>
+        <th>abs. humidity</th>
+        <th>atm. pressure</th>
+        <th>bar. trend</th>
         <th>qnh GPa</th>
         <th>qnh mm</th>
         <th>qfe</th>
-        <th>delete</th>
-        <th>update</th>
     </tr>
     <c:forEach items="${requestScope.av6Models}" var="av6Models">
         <tr>
-            <td>${av6Models.id}</td>
-            <td>${av6Models.date}</td>
-            <td>${av6Models.windDirectionName}</td>
-            <td>${av6Models.windSpeed}</td>
-            <td>${av6Models.windRush}</td>
-            <td>${av6Models.visibility}</td>
-            <td>${av6Models.octantsNumerator}/${av6Models.octantsDenominator}</td>
-            <td>${av6Models.cloudForm}</td>
-            <td>${av6Models.cloudiness}</td>
-            <td>${av6Models.temperature}</td>
-            <td>${av6Models.dewPointTemperature}</td>
-            <td>${av6Models.relativityHumidity}</td>
-            <td>${av6Models.absoluteHumidity}</td>
-            <td>${av6Models.atmospherePressure}</td>
-            <td>${av6Models.barometricTrend}</td>
-            <td>${av6Models.qnhGPa}</td>
-            <td>${av6Models.qnhMm}</td>
-            <td>${av6Models.qfe}</td>
-            <td>
-            <form action="DeleteAV6ModelServlet">
-                <label>
-                    <input name="id" value="${av6Models.id}">
-                </label>
-                <input type="submit" value="delete"/>
-            </form>
-            </td>
-            <td>
-                <form action="updateAV6Model.jsp">
-                    <label>
-                        <input name="id" value="${av6Models.id}">
-                    </label>
+            <form action="UpdateAV6ModelServlet" method="post">
+                <td><label>
+                    <input name="date" value="${av6Models.date}" size="17" id="datepicker">
+                </label></td>
+                <td><label>
+                    <input name="windDirectionName" value="${av6Models.windDirectionName}" size="15">
+                </label></td>
+                <td><label>
+                    <input name="windSpeed" value="${av6Models.windSpeed}" size="10">
+                </label></td>
+                <td><label>
+                    <input name="windRush" value="${av6Models.windRush}" size="10">
+                </label></td>
+                <td><label>
+                    <input name="visibility" value="${av6Models.visibility}" size="10">
+                </label></td>
+                <td><label>
+                    <input name="octantsNumerator" value="${av6Models.octantsNumerator}" size="10">
+                </label></td>
+                <td><label>
+                    <input name="octantsDenominator" value="${av6Models.octantsDenominator}" size="10">
+                </label></td>
+                <td><label>
+                    <input name="cloudForm" value="${av6Models.cloudForm}" size="15">
+                </label></td>
+                <td><label>
+                    <input name="cloudiness" value="${av6Models.cloudiness}" size="10">
+                </label></td>
+                <td><label>
+                    <input name="temperature" value="${av6Models.temperature}" size="15">
+                </label></td>
+                <td><label>
+                    <input name="dewPointTemperature" value="${av6Models.dewPointTemperature}" size="15">
+                </label></td>
+                <td><label>
+                    <input name="relativityHumidity" value="${av6Models.relativityHumidity}" size="15">
+                </label></td>
+                <td><label>
+                    <input name="absoluteHumidity" value="${av6Models.absoluteHumidity}" size="15">
+                </label></td>
+                <td><label>
+                    <input name="atmospherePressure" value="${av6Models.atmospherePressure}" size="15">
+                </label></td>
+                <td><label>
+                    <input name="barometricTrend" value="${av6Models.barometricTrend}" size="10">
+                </label></td>
+                <td><label>
+                    <input name="qnhGPa" value="${av6Models.qnhGPa}" size="10">
+                </label></td>
+                <td><label>
+                    <input name="qnhMm" value="${av6Models.qnhMm}" size="10">
+                </label></td>
+                <td><label>
+                    <input name="qfe" value="${av6Models.qfe}" size="5">
+                </label></td>
+                <td>
                     <input type="submit" value="update"/>
-                </form>
-            </td>
+                </td>
+            </form>
+            <form action="DeleteAV6ModelServlet">
+                <td>
+                    <label>
+                        <input name="date" value="${av6Models.date}">
+                    </label>
+                    <input type="submit" value="delete"/>
+                </td>
+            </form>
         </tr>
     </c:forEach>
 </table>
