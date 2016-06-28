@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         id="WebApp_ID"
+         version="3.0">
+
+    <welcome-file-list>
+        <welcome-file>IndexServlet</welcome-file>
+    </welcome-file-list>
+
+    <servlet>
+        <servlet-name>IndexServlet</servlet-name>
+        <servlet-class>Controller.IndexServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteAV6ModelServlet</servlet-name>
+        <servlet-class>Controller.DeleteAV6ModelServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateAV6ModelServlet</servlet-name>
+        <servlet-class>Controller.UpdateAV6ModelServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>IndexServlet</servlet-name>
+        <url-pattern>/IndexServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+            <servlet-name>DeleteAV6ModelServlet</servlet-name>
+            <url-pattern>/DeleteAV6ModelServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+            <servlet-name>UpdateAV6ModelServlet</servlet-name>
+            <url-pattern>/UpdateAV6ModelServlet</url-pattern>
+    </servlet-mapping>
+
+</web-app>
