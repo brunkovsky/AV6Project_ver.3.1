@@ -11,11 +11,43 @@ import java.util.List;
 public class AV6ModelDAOImpl implements AV6ModelDAO {
 
     @Override
-    public AV6Model createModel() {
+    public AV6Model createModel(AV6Model av6Model) {
         Connection connection = ConnectionToDB.getConnection();
         try {
-            Statement statement = connection.createStatement();
-            statement.executeQuery("");
+            PreparedStatement pStatement = connection.prepareStatement("INSERT INTO table_av6 SET wind_direction_name=?, wind_speed=?, wind_rush=?, visibility=?, octants_numerator=?, octants_denominator=?, cloudForm=?, cloudiness=?, temperature=?, dew_point_temperature=?, relativity_humidity=?, absolute_humidity=?, atmosphere_pressure=?, barometric_trend=?, qnh_gpa=?, qnh_mm=?, qfe=?;");
+            pStatement.setString(1, av6Model.getWindDirectionName());
+            if (av6Model.getWindSpeed() != null) pStatement.setInt(2, av6Model.getWindSpeed());
+            else pStatement.setNull(2, Types.INTEGER);
+            if (av6Model.getWindRush() != null) pStatement.setInt(3, av6Model.getWindRush());
+            else pStatement.setNull(3, Types.INTEGER);
+            if(av6Model.getVisibility() != null) pStatement.setInt(4, av6Model.getVisibility());
+            else pStatement.setNull(4, Types.INTEGER);
+            if (av6Model.getOctantsNumerator() != null) pStatement.setInt(5, av6Model.getOctantsNumerator());
+            else pStatement.setNull(5, Types.INTEGER);
+            if (av6Model.getOctantsDenominator() != null) pStatement.setInt(6, av6Model.getOctantsDenominator());
+            else pStatement.setNull(6, Types.INTEGER);
+            pStatement.setString(7, av6Model.getCloudForm());
+            if (av6Model.getCloudiness() != null) pStatement.setInt(8, av6Model.getCloudiness());
+            else pStatement.setNull(8, Types.DOUBLE);
+            if (av6Model.getTemperature() != null) pStatement.setDouble(9, av6Model.getTemperature());
+            else pStatement.setNull(9, Types.DOUBLE);
+            if (av6Model.getDewPointTemperature() != null) pStatement.setDouble(10, av6Model.getDewPointTemperature());
+            else pStatement.setNull(10, Types.DOUBLE);
+            if (av6Model.getRelativityHumidity() != null) pStatement.setInt(11, av6Model.getRelativityHumidity());
+            else pStatement.setNull(11, Types.INTEGER);
+            if (av6Model.getAbsoluteHumidity() != null) pStatement.setDouble(12, av6Model.getAbsoluteHumidity());
+            else pStatement.setNull(12, Types.DOUBLE);
+            if (av6Model.getAtmospherePressure() != null) pStatement.setDouble(13, av6Model.getAtmospherePressure());
+            else pStatement.setNull(13, Types.DOUBLE);
+            if (av6Model.getBarometricTrend() != null) pStatement.setDouble(14, av6Model.getBarometricTrend());
+            else pStatement.setNull(14, Types.DOUBLE);
+            if (av6Model.getQnhGPa() != null) pStatement.setDouble(15, av6Model.getQnhGPa());
+            else pStatement.setNull(15, Types.DOUBLE);
+            if (av6Model.getQnhMm() != null) pStatement.setDouble(16, av6Model.getQnhMm());
+            else pStatement.setNull(16, Types.DOUBLE);
+            if (av6Model.getQfe() != null) pStatement.setDouble(17, av6Model.getQfe());
+            else pStatement.setNull(17, Types.DOUBLE);
+            pStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -29,7 +61,7 @@ public class AV6ModelDAOImpl implements AV6ModelDAO {
         Connection connection = ConnectionToDB.getConnection();
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM table_av6 LIMIT 100;");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM table_av6 ORDER BY date LIMIT 100;");
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 Date date = resultSet.getTimestamp("date");

@@ -21,6 +21,20 @@
             color: black;
         }
     </style>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script>
+        $(function() {
+            $( "#datepicker" ).datepicker({
+                showOtherMonths: true,
+                selectOtherMonths: true,
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>
 </head>
 <body>
 <table>
@@ -46,7 +60,7 @@
     <tr>
         <form action="CreateAV6ModelServlet" method="post">
             <td><label>
-                <input name="date" value="${av6Model.date}" size="15">
+                <input name="date" value="${av6Model.date}" size="15" id="datepicker">
             </label></td>
             <td><label>
                 <input name="windDirectionName" value="${av6Model.windDirectionName}" size="10">

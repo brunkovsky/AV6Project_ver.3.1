@@ -3,6 +3,7 @@ package Controller;
 import DAO.AV6ModelDAO;
 import DAO.AV6ModelDAOImpl;
 import Model.AV6Model;
+import Utils.DateUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -35,40 +36,40 @@ public class UpdateAV6ModelServlet extends HttpServlet {
         Double qfe = null;
 
         int id = Integer.parseInt(request.getParameter("id"));
-        Date date = getDateFromString(request.getParameter("date"));
-        if (!request.getParameter("windDirectionName").equals(""))
+        Date date = DateUtil.getDateFromString(request.getParameter("date"));
+        if (!request.getParameter("windDirectionName").trim().equals(""))
             windDirectionName = request.getParameter("windDirectionName");
-        if (!request.getParameter("windSpeed").equals(""))
+        if (!request.getParameter("windSpeed").trim().equals(""))
             windSpeed = Integer.valueOf(request.getParameter("windSpeed"));
-        if(!request.getParameter("windRush").equals(""))
+        if(!request.getParameter("windRush").trim().equals(""))
             windRush = Integer.valueOf(request.getParameter("windRush"));
-        if(!request.getParameter("visibility").equals(""))
+        if(!request.getParameter("visibility").trim().equals(""))
             visibility = Integer.valueOf(request.getParameter("visibility"));
-        if(!request.getParameter("octantsNumerator").equals(""))
+        if(!request.getParameter("octantsNumerator").trim().equals(""))
             octantsNumerator = Integer.valueOf(request.getParameter("octantsNumerator"));
-        if(!request.getParameter("octantsDenominator").equals(""))
+        if(!request.getParameter("octantsDenominator").trim().equals(""))
             octantsDenominator = Integer.valueOf(request.getParameter("octantsDenominator"));
-        if(!request.getParameter("cloudForm").equals(""))
+        if(!request.getParameter("cloudForm").trim().equals(""))
             cloudForm = request.getParameter("cloudForm");
-        if(!request.getParameter("cloudiness").equals(""))
+        if(!request.getParameter("cloudiness").trim().equals(""))
             cloudiness = Integer.valueOf(request.getParameter("cloudiness"));
-        if(!request.getParameter("temperature").equals(""))
+        if(!request.getParameter("temperature").trim().equals(""))
             temperature = Double.valueOf(request.getParameter("temperature"));
-        if(!request.getParameter("dewPointTemperature").equals(""))
+        if(!request.getParameter("dewPointTemperature").trim().trim().equals(""))
             dewPointTemperature = Double.valueOf(request.getParameter("dewPointTemperature"));
-        if(!request.getParameter("relativityHumidity").equals(""))
+        if(!request.getParameter("relativityHumidity").trim().equals(""))
             relativityHumidity = Integer.valueOf(request.getParameter("relativityHumidity"));
-        if(!request.getParameter("absoluteHumidity").equals(""))
+        if(!request.getParameter("absoluteHumidity").trim().equals(""))
             absoluteHumidity = Double.valueOf(request.getParameter("absoluteHumidity"));
-        if(!request.getParameter("atmospherePressure").equals(""))
+        if(!request.getParameter("atmospherePressure").trim().equals(""))
             atmospherePressure = Double.valueOf(request.getParameter("atmospherePressure"));
-        if(!request.getParameter("barometricTrend").equals(""))
+        if(!request.getParameter("barometricTrend").trim().equals(""))
             barometricTrend = Double.valueOf(request.getParameter("barometricTrend"));
-        if(!request.getParameter("qnhGPa").equals(""))
+        if(!request.getParameter("qnhGPa").trim().equals(""))
             qnhGPa = Double.valueOf(request.getParameter("qnhGPa"));
-        if(!request.getParameter("qnhMm").equals(""))
+        if(!request.getParameter("qnhMm").trim().equals(""))
             qnhMm = Double.valueOf(request.getParameter("qnhMm"));
-        if(!request.getParameter("qfe").equals(""))
+        if(!request.getParameter("qfe").trim().equals(""))
             qfe = Double.valueOf(request.getParameter("qfe"));
 
         AV6ModelDAO av6ModelDAO = new AV6ModelDAOImpl();
@@ -76,19 +77,5 @@ public class UpdateAV6ModelServlet extends HttpServlet {
         List<AV6Model> av6Models = av6ModelDAO.readAll();
         request.setAttribute("av6Models", av6Models);
         request.getRequestDispatcher("displayAV6ModelList.jsp").forward(request, response);
-    }
-
-    private Date getDateFromString(String date) {
-        try {
-            String year = date.substring(0, 4);
-            String month = date.substring(5, 7);
-            String day = date.substring(8, 10);
-            String hour = date.substring(11, 13);
-            String minute = date.substring(14, 16);
-            System.out.println(year + " " + month + " " + day + " " + hour + " " + minute);
-        } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
-        }
-        return new Date();
     }
 }
