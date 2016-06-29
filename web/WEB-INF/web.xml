@@ -21,6 +21,14 @@
         <servlet-name>UpdateAV6ModelServlet</servlet-name>
         <servlet-class>Controller.UpdateAV6ModelServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CreateAV6ModelServlet</servlet-name>
+        <servlet-class>Controller.CreateAV6ModelServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReadAV6ModelServlet</servlet-name>
+        <servlet-class>Controller.ReadAV6ModelServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>IndexServlet</servlet-name>
@@ -33,6 +41,14 @@
     <servlet-mapping>
             <servlet-name>UpdateAV6ModelServlet</servlet-name>
             <url-pattern>/UpdateAV6ModelServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+            <servlet-name>CreateAV6ModelServlet</servlet-name>
+            <url-pattern>/CreateAV6ModelServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+            <servlet-name>ReadAV6ModelServlet</servlet-name>
+            <url-pattern>/ReadAV6ModelServlet</url-pattern>
     </servlet-mapping>
 
 </web-app>

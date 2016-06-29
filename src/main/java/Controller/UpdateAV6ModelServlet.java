@@ -34,6 +34,7 @@ public class UpdateAV6ModelServlet extends HttpServlet {
         Double qnhMm = null;
         Double qfe = null;
 
+        int id = Integer.parseInt(request.getParameter("id"));
         Date date = getDateFromString(request.getParameter("date"));
         if (!request.getParameter("windDirectionName").equals(""))
             windDirectionName = request.getParameter("windDirectionName");
@@ -71,10 +72,10 @@ public class UpdateAV6ModelServlet extends HttpServlet {
             qfe = Double.valueOf(request.getParameter("qfe"));
 
         AV6ModelDAO av6ModelDAO = new AV6ModelDAOImpl();
-        av6ModelDAO.updateModel(new AV6Model(date, windDirectionName, windSpeed, windRush, visibility, octantsNumerator, octantsDenominator, cloudForm, cloudiness, temperature, dewPointTemperature, relativityHumidity, absoluteHumidity, atmospherePressure, barometricTrend, qnhGPa, qnhMm, qfe));
+        av6ModelDAO.updateModel(new AV6Model(id, date, windDirectionName, windSpeed, windRush, visibility, octantsNumerator, octantsDenominator, cloudForm, cloudiness, temperature, dewPointTemperature, relativityHumidity, absoluteHumidity, atmospherePressure, barometricTrend, qnhGPa, qnhMm, qfe));
         List<AV6Model> av6Models = av6ModelDAO.readAll();
         request.setAttribute("av6Models", av6Models);
-        request.getRequestDispatcher("displayAV6Model.jsp").forward(request, response);
+        request.getRequestDispatcher("displayAV6ModelList.jsp").forward(request, response);
     }
 
     private Date getDateFromString(String date) {

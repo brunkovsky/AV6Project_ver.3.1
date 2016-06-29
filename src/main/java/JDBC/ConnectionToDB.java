@@ -15,7 +15,7 @@ public class ConnectionToDB {
             e.printStackTrace();
         }
         try {
-            connection = DriverManager.getConnection(connectionURL, "root", "root");
+            connection = DriverManager.getConnection(connectionURL, "root", "qwertyui");
         } catch (SQLException e) {
             e.printStackTrace();
         }

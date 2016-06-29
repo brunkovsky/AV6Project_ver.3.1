@@ -27,13 +27,13 @@
 <body>
 <table>
     <tr>
+        <th>id</th>
         <th>date</th>
         <th>wind direction</th>
         <th>wind speed</th>
         <th>wind rush</th>
         <th>visibility</th>
-        <th>octants N</th>
-        <th>octants D</th>
+        <th>octants-----</th>
         <th>cloud form</th>
         <th>cloudiness</th>
         <th>temperature</th>
@@ -50,10 +50,13 @@
         <tr>
             <form action="UpdateAV6ModelServlet" method="post">
                 <td><label>
-                    <input name="date" value="${av6Models.date}" size="17" id="datepicker">
+                    <input hidden name="id" value="${av6Models.id}">${av6Models.id}
                 </label></td>
                 <td><label>
-                    <input name="windDirectionName" value="${av6Models.windDirectionName}" size="15">
+                    <input name="date" value="${av6Models.date}" size="15" id="datepicker">
+                </label></td>
+                <td><label>
+                    <input name="windDirectionName" value="${av6Models.windDirectionName}" size="10">
                 </label></td>
                 <td><label>
                     <input name="windSpeed" value="${av6Models.windSpeed}" size="10">
@@ -65,40 +68,39 @@
                     <input name="visibility" value="${av6Models.visibility}" size="10">
                 </label></td>
                 <td><label>
-                    <input name="octantsNumerator" value="${av6Models.octantsNumerator}" size="10">
+                    <input name="octantsNumerator" value="${av6Models.octantsNumerator}" size="1">
+                    /
+                    <input name="octantsDenominator" value="${av6Models.octantsDenominator}" size="1">
                 </label></td>
                 <td><label>
-                    <input name="octantsDenominator" value="${av6Models.octantsDenominator}" size="10">
+                    <input name="cloudForm" value="${av6Models.cloudForm}" size="10">
                 </label></td>
                 <td><label>
-                    <input name="cloudForm" value="${av6Models.cloudForm}" size="15">
+                    <input name="cloudiness" value="${av6Models.cloudiness}" size="7">
                 </label></td>
                 <td><label>
-                    <input name="cloudiness" value="${av6Models.cloudiness}" size="10">
+                    <input name="temperature" value="${av6Models.temperature}" size="12">
                 </label></td>
                 <td><label>
-                    <input name="temperature" value="${av6Models.temperature}" size="15">
+                    <input name="dewPointTemperature" value="${av6Models.dewPointTemperature}" size="12">
                 </label></td>
                 <td><label>
-                    <input name="dewPointTemperature" value="${av6Models.dewPointTemperature}" size="15">
+                    <input name="relativityHumidity" value="${av6Models.relativityHumidity}" size="10">
                 </label></td>
                 <td><label>
-                    <input name="relativityHumidity" value="${av6Models.relativityHumidity}" size="15">
+                    <input name="absoluteHumidity" value="${av6Models.absoluteHumidity}" size="10">
                 </label></td>
                 <td><label>
-                    <input name="absoluteHumidity" value="${av6Models.absoluteHumidity}" size="15">
-                </label></td>
-                <td><label>
-                    <input name="atmospherePressure" value="${av6Models.atmospherePressure}" size="15">
+                    <input name="atmospherePressure" value="${av6Models.atmospherePressure}" size="10">
                 </label></td>
                 <td><label>
                     <input name="barometricTrend" value="${av6Models.barometricTrend}" size="10">
                 </label></td>
                 <td><label>
-                    <input name="qnhGPa" value="${av6Models.qnhGPa}" size="10">
+                    <input name="qnhGPa" value="${av6Models.qnhGPa}" size="7">
                 </label></td>
                 <td><label>
-                    <input name="qnhMm" value="${av6Models.qnhMm}" size="10">
+                    <input name="qnhMm" value="${av6Models.qnhMm}" size="7">
                 </label></td>
                 <td><label>
                     <input name="qfe" value="${av6Models.qfe}" size="5">
@@ -107,16 +109,24 @@
                     <input type="submit" value="update"/>
                 </td>
             </form>
-            <form action="DeleteAV6ModelServlet">
-                <td>
-                    <label>
-                        <input name="date" value="${av6Models.date}">
-                    </label>
-                    <input type="submit" value="delete"/>
-                </td>
-            </form>
         </tr>
     </c:forEach>
 </table>
+<p>
+<form action="DeleteAV6ModelServlet">
+    <label>
+        delete by id: <input name="id" size="5">
+    </label>
+    <input type="submit" value="delete"/>
+</form>
+</p>
+<p>
+<form action="ReadAV6ModelServlet">
+    <label>
+        create by id: <input name="id" size="5">
+    </label>
+    <input type="submit" value="create"/>
+</form>
+</p>
 </body>
 </html>
