@@ -21,13 +21,13 @@
             color: black;
         }
     </style>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/datetimepicker-master/jquery.datetimepicker.css"/>"/>
+    <link rel="stylesheet" type="text/css"
+          href="<c:url value="/resources/datetimepicker-master/jquery.datetimepicker.css"/>"/>
     <script src="<c:url value="/resources/datetimepicker-master/jquery.js"/>"></script>
     <script src="<c:url value="/resources/datetimepicker-master/build/jquery.datetimepicker.full.js"/>"></script>
     <script>
-        $(function() {
-            $('#datetimepicker').datetimepicker({
-            });
+        $(function () {
+            $('#datetimepicker').datetimepicker({});
         });
     </script>
     <script>
@@ -42,6 +42,7 @@
     </script>
 </head>
 <body>
+<form action="CreateAV6ModelServlet" method="post" id="CreateAV6ModelForm"></form>
 <table>
     <tr>
         <th>date</th>
@@ -63,63 +64,68 @@
         <th>qfe</th>
     </tr>
     <tr>
-        <form action="CreateAV6ModelServlet" method="post">
-            <td><label>
-                <input name="date" size="15" id="datetimepicker">
-            </label></td>
-            <td><label>
-                <input name="windDirectionName" value="${av6Model.windDirectionName}" size="10">
-            </label></td>
-            <td><label>
-                <input name="windSpeed" value="${av6Model.windSpeed}" size="10">
-            </label></td>
-            <td><label>
-                <input name="windRush" value="${av6Model.windRush}" size="10">
-            </label></td>
-            <td><label>
-                <input name="visibility" value="${av6Model.visibility}" size="10">
-            </label></td>
-            <td><label>
-                <input name="octantsNumerator" value="${av6Model.octantsNumerator}" size="1">
-                <input name="octantsDenominator" value="${av6Model.octantsDenominator}" size="1">
-            </label></td>
-            <td><label>
-                <input name="cloudForm" value="${av6Model.cloudForm}" size="10">
-            </label></td>
-            <td><label>
-                <input name="cloudiness" value="${av6Model.cloudiness}" size="7">
-            </label></td>
-            <td><label>
-                <input name="temperature" value="${av6Model.temperature}" size="12">
-            </label></td>
-            <td><label>
-                <input name="dewPointTemperature" value="${av6Model.dewPointTemperature}" size="12">
-            </label></td>
-            <td><label>
-                <input name="relativityHumidity" value="${av6Model.relativityHumidity}" size="10">
-            </label></td>
-            <td><label>
-                <input name="absoluteHumidity" value="${av6Model.absoluteHumidity}" size="10">
-            </label></td>
-            <td><label>
-                <input name="atmospherePressure" value="${av6Model.atmospherePressure}" size="10">
-            </label></td>
-            <td><label>
-                <input name="barometricTrend" value="${av6Model.barometricTrend}" size="10">
-            </label></td>
-            <td><label>
-                <input name="qnhGPa" value="${av6Model.qnhGPa}" size="7">
-            </label></td>
-            <td><label>
-                <input name="qnhMm" value="${av6Model.qnhMm}" size="7">
-            </label></td>
-            <td><label>
-                <input name="qfe" value="${av6Model.qfe}" size="5">
-            </label></td>
-            <td>
-                <input type="submit" value="insert"/>
-            </td>
-        </form>
+        <td><label>
+            <input type="text" name="date" size="15" id="datetimepicker" form="CreateAV6ModelForm">
+        </label></td>
+        <td><label>
+            <input type="text" name="windDirectionName" value="${requestScope.av6Model.windDirectionName}" size="10" form="CreateAV6ModelForm">
+        </label></td>
+        <td><label>
+            <input type="text" name="windSpeed" value="${requestScope.av6Model.windSpeed}" size="10" form="CreateAV6ModelForm">
+        </label></td>
+        <td><label>
+            <input type="text" name="windRush" value="${requestScope.av6Model.windRush}" size="10" form="CreateAV6ModelForm">
+        </label></td>
+        <td><label>
+            <input type="text" name="visibility" value="${requestScope.av6Model.visibility}" size="10" form="CreateAV6ModelForm">
+        </label></td>
+        <td><label>
+            <input type="text" name="octantsNumerator" value="${requestScope.av6Model.octantsNumerator}" size="1"
+                   form="CreateAV6ModelForm">
+            <input type="text" name="octantsDenominator" value="${requestScope.av6Model.octantsDenominator}" size="1"
+                   form="CreateAV6ModelForm">
+        </label></td>
+        <td><label>
+            <input type="text" name="cloudForm" value="${requestScope.av6Model.cloudForm}" size="10" form="CreateAV6ModelForm">
+        </label></td>
+        <td><label>
+            <input type="text" name="cloudiness" value="${requestScope.av6Model.cloudiness}" size="7" form="CreateAV6ModelForm">
+        </label></td>
+        <td><label>
+            <input type="text" name="temperature" value="${requestScope.av6Model.temperature}" size="12" form="CreateAV6ModelForm">
+        </label></td>
+        <td><label>
+            <input type="text" name="dewPointTemperature" value="${requestScope.av6Model.dewPointTemperature}" size="12"
+                   form="CreateAV6ModelForm">
+        </label></td>
+        <td><label>
+            <input type="text" name="relativityHumidity" value="${requestScope.av6Model.relativityHumidity}" size="10"
+                   form="CreateAV6ModelForm">
+        </label></td>
+        <td><label>
+            <input type="text" name="absoluteHumidity" value="${requestScope.av6Model.absoluteHumidity}" size="10"
+                   form="CreateAV6ModelForm">
+        </label></td>
+        <td><label>
+            <input type="text" name="atmospherePressure" value="${requestScope.av6Model.atmospherePressure}" size="10"
+                   form="CreateAV6ModelForm">
+        </label></td>
+        <td><label>
+            <input type="text" name="barometricTrend" value="${requestScope.av6Model.barometricTrend}" size="10"
+                   form="CreateAV6ModelForm">
+        </label></td>
+        <td><label>
+            <input type="text" name="qnhGPa" value="${requestScope.av6Model.qnhGPa}" size="7" form="CreateAV6ModelForm">
+        </label></td>
+        <td><label>
+            <input type="text" name="qnhMm" value="${requestScope.av6Model.qnhMm}" size="7" form="CreateAV6ModelForm">
+        </label></td>
+        <td><label>
+            <input type="text" name="qfe" value="${requestScope.av6Model.qfe}" size="5" form="CreateAV6ModelForm">
+        </label></td>
+        <td>
+            <input type="submit" value="insert" form="CreateAV6ModelForm"/>
+        </td>
     </tr>
 </table>
 </body>
