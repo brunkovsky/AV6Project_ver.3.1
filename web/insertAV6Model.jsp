@@ -27,7 +27,6 @@
     <script>
         $(function() {
             $('#datetimepicker').datetimepicker({
-
             });
         });
     </script>
