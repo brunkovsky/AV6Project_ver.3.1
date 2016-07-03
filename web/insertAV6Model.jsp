@@ -21,17 +21,13 @@
             color: black;
         }
     </style>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <link rel="stylesheet" href="/resources/demos/style.css">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/datetimepicker-master/jquery.datetimepicker.css"/>"/>
+    <script src="<c:url value="/resources/datetimepicker-master/jquery.js"/>"></script>
+    <script src="<c:url value="/resources/datetimepicker-master/build/jquery.datetimepicker.full.js"/>"></script>
     <script>
         $(function() {
-            $( "#datepicker" ).datepicker({
-                showOtherMonths: true,
-                selectOtherMonths: true,
-                changeMonth: true,
-                changeYear: true
+            $('#datetimepicker').datetimepicker({
+
             });
         });
     </script>
@@ -60,7 +56,7 @@
     <tr>
         <form action="CreateAV6ModelServlet" method="post">
             <td><label>
-                <input name="date" value="${av6Model.date}" size="15" id="datepicker">
+                <input name="date" value="${av6Model.date}" size="15" id="datetimepicker">
             </label></td>
             <td><label>
                 <input name="windDirectionName" value="${av6Model.windDirectionName}" size="10">
@@ -76,7 +72,6 @@
             </label></td>
             <td><label>
                 <input name="octantsNumerator" value="${av6Model.octantsNumerator}" size="1">
-                /
                 <input name="octantsDenominator" value="${av6Model.octantsDenominator}" size="1">
             </label></td>
             <td><label>
