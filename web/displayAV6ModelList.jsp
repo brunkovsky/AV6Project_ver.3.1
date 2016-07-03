@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <title>display AV6 model</title>
@@ -9,17 +11,28 @@
         td, th {border: 1px solid gray;}
         th {background-color: gray; color: black;}
     </style>
+    <%--<script src="<c:url value="/resources/datetimepicker-master/jquery.js"/>"></script>--%>
+    <script>
+        function getDateStr(ar) {
+            var year = ar.substring(0, 4);
+            var month = ar.substring(5, 7);
+            var day = ar.substring(8, 10);
+            var hour = ar.substring(11, 13);
+            var minute = ar.substring(14, 16);
+            return year + "/" + month + "/" + day + " " + hour + ":" + minute;
+        }
+    </script>
 </head>
 <body>
 <table>
     <tr>
         <th>id</th>
-        <th>date</th>
+        <th>-----dateTime-----</th>
         <th>wind direction</th>
         <th>wind speed</th>
         <th>wind rush</th>
         <th>visibility</th>
-        <th>octants-----</th>
+        <th>---octants---</th>
         <th>cloud form</th>
         <th>cloudiness</th>
         <th>temperature</th>
@@ -39,7 +52,9 @@
                     <input hidden name="id" value="${av6Models.id}">${av6Models.id}
                 </label></td>
                 <td><label>
-                    ${av6Models.date}
+                    <script>
+                        document.write(getDateStr("${av6Models.date}"));
+                    </script>
                 </label></td>
                 <td><label>
                     <input name="windDirectionName" value="${av6Models.windDirectionName}" size="10">

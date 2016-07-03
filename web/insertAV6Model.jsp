@@ -30,6 +30,16 @@
             });
         });
     </script>
+    <script>
+        function getDateStr(ar) {
+            var year = ar.substring(0, 4);
+            var month = ar.substring(5, 7);
+            var day = ar.substring(8, 10);
+            var hour = ar.substring(11, 13);
+            var minute = ar.substring(14, 16);
+            return year + "/" + month + "/" + day + " " + hour + ":" + minute;
+        }
+    </script>
 </head>
 <body>
 <table>
@@ -55,7 +65,7 @@
     <tr>
         <form action="CreateAV6ModelServlet" method="post">
             <td><label>
-                <input name="date" value="${av6Model.date}" size="15" id="datetimepicker">
+                <input name="date" size="15" id="datetimepicker">
             </label></td>
             <td><label>
                 <input name="windDirectionName" value="${av6Model.windDirectionName}" size="10">

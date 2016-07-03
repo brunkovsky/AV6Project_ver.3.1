@@ -72,7 +72,8 @@ public class CreateAV6ModelServlet extends HttpServlet {
             qfe = Double.valueOf(request.getParameter("qfe"));
 
         AV6ModelDAO av6ModelDAO = new AV6ModelDAOImpl();
-        av6ModelDAO.createModel(new AV6Model(date, windDirectionName, windSpeed, windRush, visibility, octantsNumerator, octantsDenominator, cloudForm, cloudiness, temperature, dewPointTemperature, relativityHumidity, absoluteHumidity, atmospherePressure, barometricTrend, qnhGPa, qnhMm, qfe));
+        AV6Model newModel = new AV6Model(date, windDirectionName, windSpeed, windRush, visibility, octantsNumerator, octantsDenominator, cloudForm, cloudiness, temperature, dewPointTemperature, relativityHumidity, absoluteHumidity, atmospherePressure, barometricTrend, qnhGPa, qnhMm, qfe);
+        av6ModelDAO.createModel(newModel);
         List<AV6Model> av6Models = av6ModelDAO.readAll();
         request.setAttribute("av6Models", av6Models);
         request.getRequestDispatcher("displayAV6ModelList.jsp").forward(request, response);
