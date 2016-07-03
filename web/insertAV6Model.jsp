@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <title>Insert AV6 Model</title>
@@ -12,14 +14,10 @@
             border-collapse: collapse;
         }
 
-        td, th {
+        td {
             border: 1px solid gray;
         }
 
-        th {
-            background-color: gray;
-            color: black;
-        }
     </style>
     <link rel="stylesheet" type="text/css"
           href="<c:url value="/resources/datetimepicker-master/jquery.datetimepicker.css"/>"/>
@@ -45,12 +43,12 @@
 <form action="CreateAV6ModelServlet" method="post" id="CreateAV6ModelForm"></form>
 <table>
     <tr>
-        <th>date</th>
+        <th>------dateTime------</th>
         <th>wind direction</th>
         <th>wind speed</th>
         <th>wind rush</th>
         <th>visibility</th>
-        <th>octants-----</th>
+        <th>---octants---</th>
         <th>cloud form</th>
         <th>cloudiness</th>
         <th>temperature</th>
@@ -80,10 +78,9 @@
             <input type="text" name="visibility" value="${requestScope.av6Model.visibility}" size="10" form="CreateAV6ModelForm">
         </label></td>
         <td><label>
-            <input type="text" name="octantsNumerator" value="${requestScope.av6Model.octantsNumerator}" size="1"
-                   form="CreateAV6ModelForm">
-            <input type="text" name="octantsDenominator" value="${requestScope.av6Model.octantsDenominator}" size="1"
-                   form="CreateAV6ModelForm">
+            <input type="text" name="octantsNumerator" value="${requestScope.av6Model.octantsNumerator}" size="1" form="CreateAV6ModelForm">
+            /
+            <input type="text" name="octantsDenominator" value="${requestScope.av6Model.octantsDenominator}" size="1" form="CreateAV6ModelForm">
         </label></td>
         <td><label>
             <input type="text" name="cloudForm" value="${requestScope.av6Model.cloudForm}" size="10" form="CreateAV6ModelForm">
@@ -123,10 +120,8 @@
         <td><label>
             <input type="text" name="qfe" value="${requestScope.av6Model.qfe}" size="5" form="CreateAV6ModelForm">
         </label></td>
-        <td>
-            <input type="submit" value="insert" form="CreateAV6ModelForm"/>
-        </td>
     </tr>
 </table>
+<input type="submit" value="insert" form="CreateAV6ModelForm"/>
 </body>
 </html>

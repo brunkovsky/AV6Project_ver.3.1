@@ -14,16 +14,11 @@
             border-collapse: collapse;
         }
 
-        td, th {
+        td {
             border: 1px solid gray;
         }
 
-        th {
-            background-color: gray;
-            color: black;
-        }
     </style>
-    <%--<script src="<c:url value="/resources/datetimepicker-master/jquery.js"/>"></script>--%>
     <script>
         function getDateStr(ar) {
             var year = ar.substring(0, 4);
@@ -40,7 +35,7 @@
 <table>
     <tr>
         <th>id</th>
-        <th>-----dateTime-----</th>
+        <th>------dateTime------</th>
         <th>wind direction</th>
         <th>wind speed</th>
         <th>wind rush</th>
