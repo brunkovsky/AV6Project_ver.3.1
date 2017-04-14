@@ -9,6 +9,11 @@
         <welcome-file>IndexServlet</welcome-file>
     </welcome-file-list>
 
+    <filter>
+        <filter-name>Filter</filter-name>
+        <filter-class>Controller.Filter</filter-class>
+    </filter>
+
     <servlet>
         <servlet-name>IndexServlet</servlet-name>
         <servlet-class>Controller.IndexServlet</servlet-class>
@@ -20,6 +25,14 @@
     <servlet>
         <servlet-name>UpdateAV6ModelServlet</servlet-name>
         <servlet-class>Controller.UpdateAV6ModelServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateAV6ModelServlet</servlet-name>
+        <servlet-class>Controller.CreateAV6ModelServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReadAV6ModelServlet</servlet-name>
+        <servlet-class>Controller.ReadAV6ModelServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -34,5 +47,18 @@
             <servlet-name>UpdateAV6ModelServlet</servlet-name>
             <url-pattern>/UpdateAV6ModelServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+            <servlet-name>CreateAV6ModelServlet</servlet-name>
+            <url-pattern>/CreateAV6ModelServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+            <servlet-name>ReadAV6ModelServlet</servlet-name>
+            <url-pattern>/ReadAV6ModelServlet</url-pattern>
+    </servlet-mapping>
+
+    <filter-mapping>
+        <filter-name>Filter</filter-name>
+        <url-pattern>/Filter</url-pattern>
+    </filter-mapping>
 
 </web-app>

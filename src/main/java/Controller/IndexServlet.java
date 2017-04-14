@@ -17,6 +17,6 @@ public class IndexServlet extends HttpServlet {
         AV6ModelDAO av6ModelDAO = new AV6ModelDAOImpl();
         List<AV6Model> av6Models = av6ModelDAO.readAll();
         request.setAttribute("av6Models", av6Models);
-        request.getRequestDispatcher("displayAV6Model.jsp").forward(request, response);
+        request.getRequestDispatcher("displayAV6ModelList.jsp").forward(request, response);
     }
 }

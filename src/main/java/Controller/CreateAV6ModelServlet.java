@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
-public class UpdateAV6ModelServlet extends HttpServlet {
+public class CreateAV6ModelServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
 
@@ -35,7 +35,6 @@ public class UpdateAV6ModelServlet extends HttpServlet {
         Double qnhMm = null;
         Double qfe = null;
 
-        int id = Integer.parseInt(request.getParameter("id"));
         Date date = DateUtil.getDateFromString(request.getParameter("date"));
         if (!request.getParameter("windDirectionName").trim().equals(""))
             windDirectionName = request.getParameter("windDirectionName");
@@ -55,7 +54,7 @@ public class UpdateAV6ModelServlet extends HttpServlet {
             cloudiness = Integer.valueOf(request.getParameter("cloudiness"));
         if(!request.getParameter("temperature").trim().equals(""))
             temperature = Double.valueOf(request.getParameter("temperature"));
-        if(!request.getParameter("dewPointTemperature").trim().trim().equals(""))
+        if(!request.getParameter("dewPointTemperature").trim().equals(""))
             dewPointTemperature = Double.valueOf(request.getParameter("dewPointTemperature"));
         if(!request.getParameter("relativityHumidity").trim().equals(""))
             relativityHumidity = Integer.valueOf(request.getParameter("relativityHumidity"));
@@ -73,7 +72,8 @@ public class UpdateAV6ModelServlet extends HttpServlet {
             qfe = Double.valueOf(request.getParameter("qfe"));
 
         AV6ModelDAO av6ModelDAO = new AV6ModelDAOImpl();
-        av6ModelDAO.updateModel(new AV6Model(id, date, windDirectionName, windSpeed, windRush, visibility, octantsNumerator, octantsDenominator, cloudForm, cloudiness, temperature, dewPointTemperature, relativityHumidity, absoluteHumidity, atmospherePressure, barometricTrend, qnhGPa, qnhMm, qfe));
+        AV6Model newModel = new AV6Model(date, windDirectionName, windSpeed, windRush, visibility, octantsNumerator, octantsDenominator, cloudForm, cloudiness, temperature, dewPointTemperature, relativityHumidity, absoluteHumidity, atmospherePressure, barometricTrend, qnhGPa, qnhMm, qfe);
+        av6ModelDAO.createModel(newModel);
         List<AV6Model> av6Models = av6ModelDAO.readAll();
         request.setAttribute("av6Models", av6Models);
         request.getRequestDispatcher("displayAV6ModelList.jsp").forward(request, response);
