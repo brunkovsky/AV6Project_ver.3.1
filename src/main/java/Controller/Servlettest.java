@@ -10,7 +10,7 @@ import java.io.IOException;
 @WebServlet(name = "Servlettest")
 public class Servlettest extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("Hello3");
+        System.out.println("Hello4");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
